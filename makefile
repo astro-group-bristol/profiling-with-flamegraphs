@@ -1,3 +1,10 @@
+# Makefile to build profiling inputs and outputs.
+#
+# In principle, 'make run' ought to generate various example flamegraphs.
+# It does on my machine.
+# It might not for you, if you don't have java and maybe some other
+# things installed, but this at least serves as documentation of
+# what commands need to be run.
 
 STILTS = java -jar stilts.jar
 MBT_WWW = https://www.star.bristol.ac.uk/mbt/
