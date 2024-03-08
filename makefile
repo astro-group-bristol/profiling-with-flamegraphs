@@ -110,8 +110,7 @@ tree-hash-profs: stilts-2e1e0fef.jar stilts-a561d815.jar
 # Run sub-targets
 
 stilts-flamegraphs: $(TEST_DATA) $(STILTS_VERSIONS) $(JPROFILER) \
-                    results stilts-treeset.html stilts-hashset.html
-	cp stilts-treeset.html stilts-hashset.html results/
+                    results
 	for version in -3.2 -3.2-1; \
         do \
            flamefile=results/stilts$$version.html; \
