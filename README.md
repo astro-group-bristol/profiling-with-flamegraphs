@@ -49,6 +49,8 @@
 
 For CPU profiling the output from the profiler is usually a list of
 function names or stack traces with timings.
+- Python cProfile [example](https://www.star.bristol.ac.uk/mbt/flamegraphs/match1-cprofile.txt)
+- Java HPROF [example](https://www.star.bristol.ac.uk/mbt/flamegraphs/stilts.hprof)
 
 These can be hard to read.
 
@@ -61,8 +63,8 @@ provide a visualisation of hierarchical data like stacktraces.
 Invented by Brendan Gregg around 2013(?)
 they exist in various forms:
 
-- Original [FlameGraph](https://github.com/brendangregg/FlameGraph)
-  github repository contains useful tools
+- Github repository https://github.com/brendangregg/FlameGraph
+  has useful tools
 - Some profilers output flamegraphs directly
 
 Output is interactive SVG (Scalable Vector Graphics) - click on an
