@@ -1,7 +1,9 @@
 # Makefile to build profiling inputs and outputs.
 #
-# In principle, 'make run' ought to generate various example flamegraphs.
-# It does on my machine.
+# In principle, 'make run' ought to generate various example flamegraphs
+# in the results/ subdirectory.  It does on my machine.
+# Other useful targets are 'build', 'clean' and 'veryclean'.
+#
 # It might not for you, if you don't have java and maybe some other
 # things installed, but this at least serves as documentation of
 # what commands need to be run.
