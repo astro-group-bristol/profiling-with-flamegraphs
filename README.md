@@ -69,8 +69,10 @@ Output is interactive SVG (Scalable Vector Graphics) - click on an
 element to expand/contract it to the full page width.
 
 Example outputs:
-- STILTS matching: [before](example-output/stilts-treeset.html) and
-                   [after](example-output/stilts-hashset.html)
+- STILTS matching:
+  [before](https://www.star.bristol.ac.uk/mbt/flamegraphs/stilts-treeset.html)
+  and
+  [after](https://www.star.bristol.ac.uk/mbt/flamegraphs/stilts-hashset.html)
   a 2-line change to matching code
   ([a561d815](https://github.com/Starlink/starjava/commit/a561d815a),
    replace `TreeMap` with `HashMap`)
@@ -117,7 +119,7 @@ Example using system logging tools:
     ```
     git clone https://github.com/brendangregg/FlameGraph
     ```
-- Run your program with `perf`
+- Run your program with `perf record`
   ```
   perf record -F 99 -a -g --call-graph dwarf,32768 -- my-program
 
@@ -129,7 +131,7 @@ Example using system logging tools:
      | FlameGraph/flamegraph.pl > results/perf.svg
 
   ```
-- I think you can do something similar on MacOS using Instruments?
+- I think you can do something similar on MacOS using `Instruments`
   (maybe [here](https://github.com/Kelvenbit/FlameGraphs-Instruments)
    or [here](https://carol-nichols.com/2015/12/09/rust-profiling-on-osx-cpu-time/)??)
 
