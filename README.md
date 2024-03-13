@@ -75,7 +75,7 @@ Example outputs:
   [before](https://www.star.bristol.ac.uk/mbt/flamegraphs/stilts-treeset.html)
   and
   [after](https://www.star.bristol.ac.uk/mbt/flamegraphs/stilts-hashset.html)
-  a 2-line change to matching code
+  a 2-line change to matching code - 15% speedup
   ([a561d815](https://github.com/Starlink/starjava/commit/a561d815a),
    replace `TreeMap` with `HashMap`)
 
