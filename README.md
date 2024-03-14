@@ -92,7 +92,7 @@ Python example using [py-spy](https://github.com/benfred/py-spy):
     ```
   - attach to a running process:
     ```
-    py-spy record -o pyspy.svg --pid 12345
+    py-spy record --native -o pyspy.svg --pid 12345
     ```
 - (py-spy has some other nice tricks too like `py-spy top`)
 
