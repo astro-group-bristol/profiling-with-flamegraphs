@@ -1,5 +1,11 @@
 # Profiling with flamegraphs
 
+## Plan
+
+- What's profiling?
+- Using flamegraphs
+- Hands-on (python)
+
 ## What's profiling/why profile?
 
 - If you want code to run faster, you need to know which parts are slow
