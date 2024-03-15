@@ -27,7 +27,7 @@ JPROFILER = libasyncProfiler.so
 build: $(STILTS_VERSIONS) $(TEST_DATA) $(JPROFILER) \
        $(PYSPY) $(FLAMEPROF) FlameGraph results
 
-run: build hprof stilts-flamegraphs cprofile perf-profile pyspy-profile 
+run: build pyspy-profile cprofile hprof stilts-flamegraphs perf-profile
 
 clean:
 	rm -f stilts-3.2.hprof stilts-3.2-1.hprof
