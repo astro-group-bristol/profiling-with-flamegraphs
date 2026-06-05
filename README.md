@@ -84,6 +84,7 @@ Example outputs:
   a 2-line change to matching code - 15% speedup
   ([a561d815](https://github.com/Starlink/starjava/commit/a561d815a),
    replace `TreeMap` with `HashMap`)
+- [STILTS MOC building](https://www.star.bristol.ac.uk/mbt/flamegraphs/mocshape.html)
 
 ### Try it out!
 
