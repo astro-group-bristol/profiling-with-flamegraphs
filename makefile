@@ -27,6 +27,11 @@ JPROFILER = libasyncProfiler.so
 build: $(STILTS_VERSIONS) $(TEST_DATA) $(JPROFILER) \
        $(PYSPY) $(FLAMEPROF) FlameGraph results
 
+pdf: intro.pdf
+
+intro.pdf: intro.tex
+	pdflatex intro.tex
+
 run: build pyspy-profile cprofile hprof stilts-flamegraphs perf-profile
 
 clean:
@@ -34,6 +39,7 @@ clean:
 	rm -f stilts-3.2.html stilts-3.2-1.html
 	rm -f match2-cprofile.cprof out.perf-folded perf.data perf.data.old
 	rm -rf results
+	rm -f intro.pdf intro.aux intro.out intro.log
 
 veryclean: clean
 	rm -f $(STILTS_VERSIONS) $(TEST_DATA) SkyLib.class $(JPROFILER)

@@ -1,0 +1,67 @@
+\documentclass[20pt,landscape]{foils}
+\usepackage{mbtslides}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{marvosym}
+\usepackage{amssymb}% provides \gtrsim
+\usepackage{ellipse}
+\usepackage{fancyvrb}
+\usepackage{ulem}% provides \sout
+\usepackage[cm]{sfmath}
+
+\setlength{\unitlength}{1cm}
+
+\newcommand{\bhref}[2]{\href{#1}{{\color{blue}#2}}}
+\newcommand{\burl}[1]{{\color{blue}\url{#1}}}
+
+\MyLogo{}
+\rightfooter{}
+
+
+\begin{document}
+\sf
+
+\newcommand{\bigword}[1]{
+  \vspace*{7cm}
+  \begin{center}
+    \color{darkblue}
+    \scalebox{3}{
+      \Huge\bf #1
+    }
+  \end{center}
+  \addtocounter{page}{-1}
+}
+
+\newpage
+\begin{center}
+{\color{darkblue}\Huge\bf Profiling and Flamegraphs}
+
+\includegraphics[height=16cm]{flame-example.png}
+
+\burl{https://github.com/astro-group-bristol/profiling-with-flamegraphs}
+\end{center}
+
+
+\newpage
+\bigword{Wins?}
+
+\newpage
+\bigword{News?}
+
+\newpage
+\bigword{Issues?}
+
+\newpage
+\begin{center}
+  \vspace*{8.5cm}
+  \large
+  \burl{https://github.com/astro-group-bristol/profiling-with-flamegraphs}
+\end{center}
+
+\newpage
+\bigword{AOB?}
+
+
+
+\end{document}
+

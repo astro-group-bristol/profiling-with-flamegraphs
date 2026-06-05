@@ -1,0 +1,97 @@
+%  Copied and adapted from Matt Welsh's mdwslides.sty package.
+
+\RequirePackage{color}
+\RequirePackage[pdfborder={0 0 0}]{hyperref}
+
+\hypersetup{pdfmenubar=true,pdftoolbar=true,pdfpagemode={None}}
+
+\raggedright
+
+% Define page margins
+\setlength{\topmargin}{-1.1in}
+%\addtolength{\oddsidemargin}{-0.5in}
+%\addtolength{\textwidth}{1.0in}
+\setlength{\oddsidemargin}{-0.5in}
+\setlength{\textheight}{7.9in}
+\setlength{\foilheadskip}{-0.5in}
+\setlength{\footskip}{0in}
+
+\setlength{\textwidth}{10.0in}
+
+% for wide slides.  Note no longer requires landscape option.
+\setlength{\paperheight}{220mm}
+\setlength{\paperwidth}{388mm}
+\setlength{\textwidth}{14.0in}
+
+% Define colors
+\definecolor{darkblue}{rgb}{0.2,0.2,0.6}
+\definecolor{grey}{rgb}{0.6,0.6,0.6}
+\definecolor{faintgrey}{rgb}{0.95,0.95,0.95}
+\definecolor{darkgrey}{rgb}{0.4,0.4,0.4}
+\definecolor{darkgreen}{rgb}{0.2,0.6,0.2}
+\definecolor{darkred}{rgb}{0.7,0.2,0.2}
+\definecolor{fadered}{rgb}{0.8,0.6,0.6}
+\definecolor{brown}{rgb}{0.4,0.2,0.0}
+\definecolor{lightbrown}{rgb}{0.77,0.66,0.48}
+\definecolor{teal}{rgb}{0.000,0.317,0.611}
+\definecolor{orange}{rgb}{0.80,0.60,0.0}
+\definecolor{nudgeblue}{rgb}{0.2,0.4,1.0}
+\definecolor{hotpink}{rgb}{1.0,0.45,0.75}
+% Set default color (used for title, footer, etc.)
+\renewcommand\normalcolor{\color{darkblue}}
+
+% Set up fonts
+\newcommand{\verdana}{\fontencoding{T1}\usefont{T1}{verdana}{m}{n}}
+\newcommand{\verdanai}{\fontencoding{T1}\usefont{T1}{verdanai}{m}{n}}
+\newcommand{\verdanab}{\fontencoding{T1}\usefont{T1}{verdanab}{m}{n}}
+\newcommand{\trebuc}{\fontencoding{T1}\usefont{T1}{trebuc}{m}{n}}
+\newcommand{\trebucbd}{\fontencoding{T1}\usefont{T1}{trebucbd}{m}{n}}
+\newcommand{\trebucit}{\fontencoding{T1}\usefont{T1}{trebucit}{m}{n}}
+\newcommand{\slingbold}{\fontencoding{T1}\usefont{T1}{slingbold}{m}{n}}
+\newcommand{\monotype}{\fontencoding{T1}\usefont{T1}{monotype}{m}{n}}
+\newcommand{\yikatu}{\fontencoding{T1}\usefont{T1}{yikatu}{m}{n}}
+
+% Define some macros
+\newcommand{\slide}[1]{\foilhead{\fbox{\Large\bf #1}}\vspace*{1ex}}
+\newcommand{\mdwmed}{\fontsize{24pt}{24pt}\sf}
+\newcommand{\mdwsmallish}{\fontsize{22pt}{22pt}\sf}
+\newcommand{\mdwsmall}{\fontsize{18pt}{18pt}\sf}
+\newcommand{\mdwsmaller}{\fontsize{16pt}{16pt}\sf}
+\newcommand{\mdwtiny}{\fontsize{14pt}{14pt}\sf}
+\newcommand{\displayurl}[1]{\href{#1}{{\color{blue}#1}}}
+\newcommand{\mono}{\tt\color{brown}}
+
+% Define list1, list2, list3 environments.
+\newcommand{\bulletcolor}{\color{teal}}
+
+\newenvironment{list0}%
+{\begin{list}{}{\setlength{\leftmargin}{-0.0in}\setlength{\itemsep}{0.5ex}}\mdwmed}
+{\end{list}\normalsize}
+
+\newenvironment{list1}%
+{\begin{list}{{\bulletcolor$\bullet$}}{\setlength{\leftmargin}{0.5cm}\setlength{\itemsep}{0.5ex}}\mdwmed}
+{\end{list}\normalsize}
+
+\newenvironment{list2}%
+{\begin{list}{\small{\bulletcolor$\bullet$}}{\setlength{\leftmargin}{0.75in}\setlength{\itemsep}{0.5ex}}\small}
+{\end{list}\normalsize}
+
+\newenvironment{list2big}%
+{\begin{list}{{\bulletcolor$\bullet$}}{\setlength{\leftmargin}{0.75in}\setlength{\itemsep}{0.8ex}}\mdwsmallish}
+{\end{list}\normalsize}
+
+\newenvironment{list3}%
+{\begin{list}{\small{\bulletcolor$\triangleright$}}{\setlength{\leftmargin}{0.75in}\setlength{\itemsep}{0.5ex}\setlength{\topsep}{0.75ex}\setlength{\parskip}{0.5ex}}\mdwsmall\color{black}}
+{\end{list}\normalsize\color{black}}
+
+\newenvironment{list4}%
+{\begin{list}{\small{\bulletcolor$\circ$}}{\setlength{\leftmargin}{0.75in}\setlength{\itemsep}{0.5ex}\setlength{\topsep}{0.75ex}\setlength{\parskip}{0.5ex}}\mdwsmaller\color{black}}
+{\end{list}\normalsize\color{black}}
+
+\newenvironment{code2}%
+{\begin{list}{}{\setlength{\leftmargin}{0.75in}\setlength{\itemsep}{0.5ex}}\small\color{brown}\tt}
+{\end{list}\normalsize\color{black}}
+
+% Turn off bullets on top-level list items (only used with itemize)
+\renewcommand\labelitemi{}
+
