@@ -44,10 +44,10 @@
   - May not understand/report stack frames in a language-friendly way
 
 - **Language-specific**
-  - Java: [`HPROF`](https://docs.oracle.com/javase/8/docs/technotes/samples/hprof.html),
-          [`async-profiler`](https://github.com/async-profiler/async-profiler)
   - Python: [`cProfile`](https://docs.python.org/3/library/profile.html),
             [`py-spy`](https://github.com/benfred/py-spy)
+  - Java: [`HPROF`](https://docs.oracle.com/javase/8/docs/technotes/samples/hprof.html),
+          [`async-profiler`](https://github.com/async-profiler/async-profiler)
   - others ...
   - Not all profilers are equal!
 
@@ -77,6 +77,7 @@ Output is interactive SVG (Scalable Vector Graphics) - click on an
 element to expand/contract it to the full page width.
 
 Example outputs:
+- [STILTS MOC building](https://www.star.bristol.ac.uk/mbt/flamegraphs/mocshape.html)
 - STILTS matching:
   [before](https://www.star.bristol.ac.uk/mbt/flamegraphs/stilts-treeset.html)
   and
@@ -84,26 +85,41 @@ Example outputs:
   a 2-line change to matching code - 15% speedup
   ([a561d815](https://github.com/Starlink/starjava/commit/a561d815a),
    replace `TreeMap` with `HashMap`)
-- [STILTS MOC building](https://www.star.bristol.ac.uk/mbt/flamegraphs/mocshape.html)
 
-### Try it out!
+## Try it out!
 
-Python example using [py-spy](https://github.com/benfred/py-spy):
-- Install py-spy, one of the following might work:
+### Python examples using makefile from this repo:
+
+```
+  git clone git@github.com:astro-group-bristol/profiling-with-flamegraphs.git
+  cd profiling-with-flamegraphs
+  make prepare
+     [... installs a venv with required packages etc]
+  make cprofile
+  make pyspy-profile
+  make perf-profile             [... linux only]
+```
+See `results` directory
+
+### Python examples by hand:
+
+[py-spy](https://github.com/benfred/py-spy):
+
+- Install:
   - MacOS: `brew install py-spy`
   - other: `pip install py-spy`
 - Run `py-spy record` on a python program you want to profile
-  - from the start:
-    ```
-    py-spy record --native -o pyspy.svg -- python program.py
-    ```
-  - attach to a running process:
-    ```
-    py-spy record --native -o pyspy.svg --pid 12345
-    ```
+  - either from the start:
+  ```
+  py-spy record --native -o pyspy.svg -- python program.py
+  ```
+  - or attach to a running process:
+  ```
+  py-spy record --native -o pyspy.svg --pid 12345
+  ```
 - (py-spy has some other nice tricks too like `py-spy top`)
 
-Python example using
+
 [`cProfile`](https://docs.python.org/3/library/profile.html):
 - cProfile is included with python and it can produce text summaries
   or binary cprof files.
@@ -122,7 +138,7 @@ Python example using
 - (The flamegraphs don't seem to be interactive for me, but the docs
   suggest they should be)
 
-Example using system logging tools:
+[`perf`](https://perfwiki.github.io/main/) (Linux)
 - On Linux you can use `perf`, then pass the output to FlameGraph scripts
   - Clone the FlameGraph repo
     ```
@@ -145,15 +161,25 @@ Example using system logging tools:
    or [here](https://carol-nichols.com/2015/12/09/rust-profiling-on-osx-cpu-time/)??)
 
 
-### Other uses
+## Other uses
 
 - You can use flamegraphs for other things too, e.g.  memory usage,
   off-CPU time, special event categories (`perf` has lots of options).
 - And here's a neat trick to see what's taking up space on your disk:
+  - Using this repo:
+  ```
+  make files
+  ```
+  - By hand:
   ```
   git clone https://github.com/brendangregg/FlameGraph
   FlameGraph/files.pl ~ | FlameGraph/flamegraph.pl > files.svg
   ```
 
+## More profiling
+
+Fergus wrote a tutorial for ADASS XXXV:
+- Slides: https://cosroe.com/archive/adass-profiling-2025.pdf
+- Repository: https://git.sr.ht/~fjebaker/adass-profiling-workshop-2025
 
 
