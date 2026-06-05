@@ -24,8 +24,10 @@ STILTS_VERSIONS = stilts-3.2-1.jar stilts-3.2.jar stilts.jar
 
 JPROFILER = libasyncProfiler.so
 
+prepare: pvenv FlameGraph results
+
 build: $(STILTS_VERSIONS) $(TEST_DATA) $(JPROFILER) \
-       $(PYSPY) $(FLAMEPROF) FlameGraph results
+       FlameGraph results pvenv
 
 pdf: intro.pdf
 
@@ -45,6 +47,7 @@ veryclean: clean
 	rm -f $(STILTS_VERSIONS) $(TEST_DATA) SkyLib.class $(JPROFILER)
 	rm -f stilts-hashset.jar stilts-treeset.jar
 	rm -rf FlameGraph
+	rm -rf pvenv
 
 results:
 	mkdir -p results
@@ -142,22 +145,33 @@ hprof: build
 	java -Xrunhprof:cpu=samples,depth=32,file=results/stilts.hprof \
              -jar stilts.jar -bench $(JMATCHARGS); \
 
-cprofile: build
-	$(PYTHON) -m cProfile -s tottime match2.py >results/match2-cprofile.txt
-	$(PYTHON) -m cProfile -o match2-cprofile.cprof match2.py
-	$(FLAMEPROF) match2-cprofile.cprof >results/match2-cprofile.svg
+pvenv:
+	python -m venv pvenv
+	. pvenv/bin/activate && \
+        pip install astropy scipy flameprof py-spy
+
+cprofile: pvenv results
+	. pvenv/bin/activate && \
+	python -m cProfile -s tottime match2.py >results/match2-cprofile.txt &&\
+	python -m cProfile -o match2-cprofile.cprof match2.py && \
+	flameprof match2-cprofile.cprof >results/match2-cprofile.svg
 
 # Works nicely.  May require root on MacOS?
-pyspy-profile: build $(PYSPY)
-	time $(PYSPY) record --native -o results/match2-pyspy.svg -- \
-             $(PYTHON) match2.py \
-        || echo "sometimes fails, probably OK"
+# MacOS doesn't like record "--native" flag.  Not sure what it does anyway
+pyspy-profile: pvenv results
+	. pvenv/bin/activate && \
+	time py-spy record -o results/match2-pyspy.svg -- \
+             python match2.py
  
 # May require sudo sysctl kernel.perf_event_paranoid=0
 # Other OS equivalents are instruments (MacOS), Xperf.exe (Windows)
-perf-profile: build
-	perf record -F 99 -a -g --call-graph dwarf,32768 -- $(PYTHON) match2.py
+perf-profile: pvenv
+	. pvenv/bin/activate && \
+	perf record -F 99 -a -g --call-graph dwarf,32768 -- $(PYTHON) match2.py && \
 	perf script \
              | FlameGraph//stackcollapse-perf.pl \
              | FlameGraph/flamegraph.pl > results/match2-perf.svg
-	
+
+files: FlameGraph results
+	FlameGraph/files.pl /usr | FlameGraph/flamegraph.pl >results/files.svg
+
