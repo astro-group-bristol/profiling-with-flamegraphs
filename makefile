@@ -17,7 +17,6 @@ T1 = t1-$(NROW).fits
 T2 = t2-$(NROW).fits
 PYSPY = py-spy
 FLAMEPROF = flameprof
-PYTHON = python3
 
 TEST_DATA = $(T0) $(T1) $(T2)
 STILTS_VERSIONS = stilts-3.2-1.jar stilts-3.2.jar stilts.jar
@@ -29,10 +28,10 @@ prepare: pvenv FlameGraph results
 build: $(STILTS_VERSIONS) $(TEST_DATA) $(JPROFILER) \
        FlameGraph results pvenv
 
-pdf: intro.pdf
+pdf: slides/intro.pdf
 
-intro.pdf: intro.tex
-	pdflatex intro.tex
+slides/intro.pdf: slides/intro.tex
+	cd slides && pdflatex intro.tex
 
 run: build pyspy-profile cprofile hprof stilts-flamegraphs perf-profile
 
@@ -41,7 +40,8 @@ clean:
 	rm -f stilts-3.2.html stilts-3.2-1.html
 	rm -f match2-cprofile.cprof out.perf-folded perf.data perf.data.old
 	rm -rf results
-	rm -f intro.pdf intro.aux intro.out intro.log
+	rm -f slides/intro.pdf slides/intro.aux slides/intro.out \
+              slides/intro.log
 
 veryclean: clean
 	rm -f $(STILTS_VERSIONS) $(TEST_DATA) SkyLib.class $(JPROFILER)
@@ -167,9 +167,9 @@ pyspy-profile: pvenv results
 # Other OS equivalents are instruments (MacOS), Xperf.exe (Windows)
 perf-profile: pvenv
 	. pvenv/bin/activate && \
-	perf record -F 99 -a -g --call-graph dwarf,32768 -- $(PYTHON) match2.py && \
+	perf record -F 99 -a -g --call-graph dwarf,32768 -- python match2.py && \
 	perf script \
-             | FlameGraph//stackcollapse-perf.pl \
+             | FlameGraph/stackcollapse-perf.pl \
              | FlameGraph/flamegraph.pl > results/match2-perf.svg
 
 files: FlameGraph results

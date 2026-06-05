@@ -176,7 +176,7 @@ See `results` directory
   FlameGraph/files.pl ~ | FlameGraph/flamegraph.pl > files.svg
   ```
 
-## More profiling
+## More ...
 
 Fergus wrote a tutorial for ADASS XXXV:
 - Slides: https://cosroe.com/archive/adass-profiling-2025.pdf
